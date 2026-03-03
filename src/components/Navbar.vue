@@ -45,15 +45,15 @@ const detenerReloj = () => {
     
     <nav class="nav-left">
       <ul class="nav-links">
-        <li><a href="#inicio">Inicio</a></li>
-        <li><a href="#tienda">Tienda</a></li>
-        <li><a href="#coleccion">Colección</a></li>
-        <li><a href="#compania">Compañía</a></li>
+        <li><a href="#inicio">INICIO</a></li>
+        <li><a href="#tienda">TIENDA</a></li>
+        <li><a href="#coleccion">COLECCIÓN</a></li>
+        <li><a href="#compania">COMPANÍA</a></li>
       </ul>
     </nav>
 
     <div class="nav-center">
-      <a href="#" class="logo">VELARIS</a>
+      <span class="logo">VELARIS</span>
     </div>
 
     <div class="nav-right">
@@ -116,20 +116,18 @@ const detenerReloj = () => {
 .nav-links a {
   text-decoration: none;
   color: #333;
-  font-size: 0.75rem;
-  text-transform: uppercase;
+  font-size: 0.70rem;
   letter-spacing: 1.5px;
   transition: color 0.3s ease;
 }
-.nav-links a:hover { color: #000; }
+.nav-links a:hover { color: #7a7979; }
 
 .nav-center { justify-self: center; }
 .logo {
   font-family: 'The Seasons', serif;
-  font-size: 2.5rem;
+  font-size: 2rem;
   color: #000;
   text-decoration: none;
-  text-transform: uppercase;
   letter-spacing: 3px;
   line-height: 1;
 }

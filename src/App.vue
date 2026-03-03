@@ -1,15 +1,3 @@
-<template>
-  <div id="app">
-    <Navbar />
-    <Section
-      v-for="(s, i) in sections"
-      :key="i"
-      :text="s.text"
-      :img="s.img"
-    />
-  </div>
-</template>
-
 <script setup>
 import Navbar from './components/Navbar.vue'
 
@@ -21,14 +9,14 @@ import { Observer } from 'gsap/Observer'
 
 gsap.registerPlugin(Observer)
 
-import img1 from './assets/Hero-img_1.png'
-import img2 from './assets/Hero-img_2.png'
-import img3 from './assets/Hero-img_3.png'
+import img1 from './assets/Img_1.png'
+import img2 from './assets/Img_2.png'
+import img3 from './assets/Img_3.png'
 
 const sections = ref([
-  { text: 'Sección 1 — Bienvenido', img: img1 },
-  { text: 'Sección 2 — Desplázate', img: img2 },
-  { text: 'Sección 3 — Gracias', img: img3 }
+  { text: 'UN ESTILO QUE<br>TRANSCIENDE EL TIEMPO', img: img1 },
+  { text: 'PEQUEÑOS LUJOS<br>PARA GRANDES INSTANTES', img: img2 },
+  { text: 'VISTE LA ESENCIA VELARIS', img: img3 }
 ])
 
 onMounted(() => {
@@ -93,15 +81,26 @@ onMounted(() => {
 })
 </script>
 
+<template>
+  <div id="app">
+    <Navbar />
+    <Section
+      v-for="(s, i) in sections"
+      :key="i"
+      :text="s.text"
+      :img="s.img"
+    />
+  </div>
+</template>
+
 <style>
 html, body, #app {
   height: 100%;
   margin: 0;
   padding: 0;
   overflow: hidden;
-  background: black;
+  background: #ffff;
   font-family: "Cormorant Garamond", serif;
-  text-transform: uppercase;
 }
 section {
   position: fixed;
@@ -124,14 +123,15 @@ section .outer, section .inner {
   top: 0;
   background-size: cover;
   background-position: center;
-  display:flex; align-items:center; justify-content:center;
+  display:flex; flex-direction:column; align-items:center; justify-content:center;
 }
 .section-heading {
-  color: #fff;
-  font-size: clamp(1rem, 6vw, 6rem);
-  font-weight: 400;
+  color: #fafafa;
+  font-size: clamp(0.5rem, 4vw, 4rem);
+  font-weight: 200;
   text-align: center;
-  letter-spacing: 0.5em;
+  letter-spacing: 0.10em;
+  font-style: italic;
 }
 </style>
 
