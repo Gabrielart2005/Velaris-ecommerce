@@ -17,7 +17,7 @@ const bgStyle = computed(() => ({
         <div class="outer">
             <div class="inner">
                 <div class="bg" :style="bgStyle">
-                    <h2 class="section-heading">{{ text }}</h2>
+                    <h2 class="section-heading" v-html="text"></h2>
                     <div class="btn-container">
                         <button class="btn">VER COLECCIÓN</button>
                         <button class="btn">COMPRAR AHORA</button>

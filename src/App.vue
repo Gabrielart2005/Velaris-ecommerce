@@ -4,6 +4,8 @@ import Navbar from './components/Navbar.vue'
 import { onMounted, ref } from 'vue'
 
 import Section from './components/Section.vue'
+import Bestsellers from './components/Bestsellers.vue'
+
 import { gsap } from 'gsap'
 import { Observer } from 'gsap/Observer'
 
@@ -11,7 +13,7 @@ gsap.registerPlugin(Observer)
 
 import img1 from './assets/Img_1.png'
 import img2 from './assets/Img_2.png'
-import img3 from './assets/Img_3.png'
+import img3 from './assets/img_3.png'
 
 const sections = ref([
   { text: 'UN ESTILO QUE<br>TRANSCIENDE EL TIEMPO', img: img1 },
@@ -20,21 +22,23 @@ const sections = ref([
 ])
 
 onMounted(() => {
-  const sectionEls = document.querySelectorAll('section')
-  const images = document.querySelectorAll('.bg')
-  const headings = gsap.utils.toArray('.section-heading')
-  const outerWrappers = gsap.utils.toArray('.outer')
-  const innerWrappers = gsap.utils.toArray('.inner')
+  const heroSlider = document.querySelector('#hero-slider')
+  const sectionEls = heroSlider.querySelectorAll('section')
+  const images = heroSlider.querySelectorAll('.bg')
+  const headings = gsap.utils.toArray('.section-heading', heroSlider)
+  const outerWrappers = gsap.utils.toArray('.outer', heroSlider)
+  const innerWrappers = gsap.utils.toArray('.inner', heroSlider)
 
   gsap.set(outerWrappers, { yPercent: 100 })
   gsap.set(innerWrappers, { yPercent: -100 })
 
   let currentIndex = -1
-  const wrap = gsap.utils.wrap(0, sectionEls.length)
+  const totalSlides = sectionEls.length
   let animating = false
 
   function gotoSection(index, direction) {
-    index = wrap(index)
+    // Clamp: don't go below 0 or above last slide
+    if (index < 0 || index >= totalSlides) return
     animating = true
     const fromTop = direction === -1
     const dFactor = fromTop ? -1 : 1
@@ -69,12 +73,17 @@ onMounted(() => {
   }
 
   Observer.create({
+    target: heroSlider,
     type: 'wheel,touch,pointer',
     wheelSpeed: -1,
-    onDown: () => !animating && gotoSection(currentIndex - 1, -1),
-    onUp: () => !animating && gotoSection(currentIndex + 1, 1),
+    onDown: () => {
+      if (!animating && currentIndex > 0) gotoSection(currentIndex - 1, -1)
+    },
+    onUp: () => {
+      if (!animating && currentIndex < totalSlides - 1) gotoSection(currentIndex + 1, 1)
+    },
     tolerance: 10,
-    preventDefault: true
+    preventDefault: false
   })
 
   gotoSection(0, 1)
@@ -84,38 +93,56 @@ onMounted(() => {
 <template>
   <div id="app">
     <Navbar />
-    <Section
-      v-for="(s, i) in sections"
-      :key="i"
-      :text="s.text"
-      :img="s.img"
-    />
+    <div id="hero-slider">
+      <Section
+        v-for="(s, i) in sections"
+        :key="i"
+        :text="s.text"
+        :img="s.img"
+      />
+    </div>
+    <Bestsellers />
   </div>
 </template>
 
 <style>
-html, body, #app {
-  height: 100%;
+html, body {
   margin: 0;
   padding: 0;
-  overflow: hidden;
-  background: #ffff;
+  background: #fff;
   font-family: "Cormorant Garamond", serif;
 }
-section {
-  position: fixed;
+
+#app {
+  margin: 0;
+  padding: 0;
+}
+
+/* ── Hero Slider ── */
+#hero-slider {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  overflow: hidden;
+}
+
+#hero-slider section {
+  position: absolute;
   top: 0; left: 0;
   width: 100%;
   height: 100%;
   visibility: hidden;
   will-change: transform;
 }
-section .outer, section .inner {
+
+#hero-slider section .outer,
+#hero-slider section .inner {
   width: 100%;
   height: 100%;
   overflow: hidden;
   will-change: transform;
 }
+
 .bg {
   position: absolute;
   width: 100%;
@@ -123,8 +150,12 @@ section .outer, section .inner {
   top: 0;
   background-size: cover;
   background-position: center;
-  display:flex; flex-direction:column; align-items:center; justify-content:center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 }
+
 .section-heading {
   color: #fafafa;
   font-size: clamp(0.5rem, 4vw, 4rem);
@@ -134,6 +165,7 @@ section .outer, section .inner {
   font-style: italic;
 }
 </style>
+
 
 
 
