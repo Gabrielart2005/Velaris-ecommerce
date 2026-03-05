@@ -1,10 +1,10 @@
 <script setup>
-import Navbar from './components/Navbar.vue'
+import Navbar from './components/Common/Navbar.vue'
 
 import { onMounted, ref } from 'vue'
 
-import Section from './components/Section.vue'
-import Bestsellers from './components/Bestsellers.vue'
+import Section from './components/Home/Section.vue'
+import Bestsellers from './components/Home/Bestsellers.vue'
 
 import { gsap } from 'gsap'
 import { Observer } from 'gsap/Observer'
@@ -164,6 +164,7 @@ html, body {
   letter-spacing: 0.10em;
   font-style: italic;
 }
+
 </style>
 
 

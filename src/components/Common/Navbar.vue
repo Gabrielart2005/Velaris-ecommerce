@@ -69,14 +69,14 @@ const detenerReloj = () => {
           v-model="searchQuery"
           @input="detenerReloj"
         >
-        <img src="../assets/lupa.png" alt="Search" class="custom-icon" @click="toggleSearch">
+        <img src="../../assets/lupa.png" alt="Search" class="custom-icon" @click="toggleSearch">
       </div>
       
       <div class="nav-icons">
-        <img src="../assets/usuario.png" alt="User" class="custom-icon">
+        <img src="../../assets/usuario.png" alt="User" class="custom-icon">
         
         <div class="cart-container">
-          <img src="../assets/bolsa-de-la-compra.png" alt="Cart" class="custom-icon">
+          <img src="../../assets/bolsa-de-la-compra.png" alt="Cart" class="custom-icon">
           <span class="cart-count" v-if="cartCount > 0">({{ cartCount }})</span>
         </div>
       </div>
