@@ -5,6 +5,7 @@ import { onMounted, ref } from 'vue'
 
 import Section from './components/Home/Section.vue'
 import Bestsellers from './components/Home/Bestsellers.vue'
+import Coleccion from './components/Home/Coleccion.vue'
 
 import { gsap } from 'gsap'
 import { Observer } from 'gsap/Observer'
@@ -102,6 +103,7 @@ onMounted(() => {
       />
     </div>
     <Bestsellers />
+    <Coleccion />
   </div>
 </template>
 
