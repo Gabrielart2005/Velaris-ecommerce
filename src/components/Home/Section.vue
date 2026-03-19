@@ -22,10 +22,6 @@ const bgStyle = computed(() => ({
                         <button class="btn">VER COLECCIÓN</button>
                         <button class="btn">COMPRAR AHORA</button>
                     </div>
-                    <div class="scroll-down">
-                        <span class="scroll-text">DESLIZA PARA DESCUBRIR</span>
-                        <img src="../../assets/down-arrow.png" alt="Scroll down">
-                    </div>
                 </div>
             </div>
         </div>
